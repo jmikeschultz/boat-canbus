@@ -1,0 +1,14 @@
+[Unit]
+Description=Setup RS485 CAN HAT Interface
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/ip link set can0 up type can bitrate 500000
+ExecStop=/sbin/ip link set can0 down
+StandardOutput=append:/var/log/canbus.log
+StandardError=append:/var/log/canbus.log
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

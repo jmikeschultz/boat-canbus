@@ -1,0 +1,14 @@
+[Unit]
+Description=CAN Bus Listener for RS485 CAN HAT
+After=network.target canbus.service
+Wants=canbus.service
+
+[Service]
+ExecStartPre=/bin/sleep 5
+ExecStart=/usr/bin/python3 /home/mike/boat-canbus/canbus_listener.py
+WorkingDirectory=/home/mike/boat-canbus
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
